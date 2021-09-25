@@ -66,6 +66,8 @@ namespace Intersect.Editor.Forms.Editors
             this.lblCastDuration = new System.Windows.Forms.Label();
             this.lblCooldownDuration = new System.Windows.Forms.Label();
             this.grpRequirements = new DarkUI.Controls.DarkGroupBox();
+            this.lblCannotCast = new System.Windows.Forms.Label();
+            this.txtCannotCast = new DarkUI.Controls.DarkTextBox();
             this.btnDynamicRequirements = new DarkUI.Controls.DarkButton();
             this.grpTargetInfo = new DarkUI.Controls.DarkGroupBox();
             this.nudDuration = new DarkUI.Controls.DarkNumericUpDown();
@@ -108,6 +110,8 @@ namespace Intersect.Editor.Forms.Editors
             this.lblMag = new System.Windows.Forms.Label();
             this.lblStr = new System.Windows.Forms.Label();
             this.grpHotDot = new DarkUI.Controls.DarkGroupBox();
+            this.lblTickAnimation = new System.Windows.Forms.Label();
+            this.cmbTickAnimation = new DarkUI.Controls.DarkComboBox();
             this.nudTick = new DarkUI.Controls.DarkNumericUpDown();
             this.chkHOTDOT = new DarkUI.Controls.DarkCheckBox();
             this.lblTick = new System.Windows.Forms.Label();
@@ -171,8 +175,6 @@ namespace Intersect.Editor.Forms.Editors
             this.btnClearSearch = new DarkUI.Controls.DarkButton();
             this.txtSearch = new DarkUI.Controls.DarkTextBox();
             this.lstGameObjects = new Intersect.Editor.Forms.Controls.GameObjectList();
-            this.lblCannotCast = new System.Windows.Forms.Label();
-            this.txtCannotCast = new DarkUI.Controls.DarkTextBox();
             this.pnlContainer.SuspendLayout();
             this.grpGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSpell)).BeginInit();
@@ -722,6 +724,26 @@ namespace Intersect.Editor.Forms.Editors
             this.grpRequirements.TabStop = false;
             this.grpRequirements.Text = "Casting Requirements";
             // 
+            // lblCannotCast
+            // 
+            this.lblCannotCast.AutoSize = true;
+            this.lblCannotCast.Location = new System.Drawing.Point(8, 51);
+            this.lblCannotCast.Name = "lblCannotCast";
+            this.lblCannotCast.Size = new System.Drawing.Size(114, 13);
+            this.lblCannotCast.TabIndex = 56;
+            this.lblCannotCast.Text = "Cannot Cast Message:";
+            // 
+            // txtCannotCast
+            // 
+            this.txtCannotCast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.txtCannotCast.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCannotCast.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtCannotCast.Location = new System.Drawing.Point(11, 67);
+            this.txtCannotCast.Name = "txtCannotCast";
+            this.txtCannotCast.Size = new System.Drawing.Size(207, 20);
+            this.txtCannotCast.TabIndex = 55;
+            this.txtCannotCast.TextChanged += new System.EventHandler(this.txtCannotCast_TextChanged);
+            // 
             // btnDynamicRequirements
             // 
             this.btnDynamicRequirements.Location = new System.Drawing.Point(11, 18);
@@ -952,7 +974,7 @@ namespace Intersect.Editor.Forms.Editors
             this.grpCombat.ForeColor = System.Drawing.Color.Gainsboro;
             this.grpCombat.Location = new System.Drawing.Point(3, 513);
             this.grpCombat.Name = "grpCombat";
-            this.grpCombat.Size = new System.Drawing.Size(440, 432);
+            this.grpCombat.Size = new System.Drawing.Size(440, 500);
             this.grpCombat.TabIndex = 39;
             this.grpCombat.TabStop = false;
             this.grpCombat.Text = "Combat Spell";
@@ -1399,16 +1421,48 @@ namespace Intersect.Editor.Forms.Editors
             // 
             this.grpHotDot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.grpHotDot.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.grpHotDot.Controls.Add(this.lblTickAnimation);
+            this.grpHotDot.Controls.Add(this.cmbTickAnimation);
             this.grpHotDot.Controls.Add(this.nudTick);
             this.grpHotDot.Controls.Add(this.chkHOTDOT);
             this.grpHotDot.Controls.Add(this.lblTick);
             this.grpHotDot.ForeColor = System.Drawing.Color.Gainsboro;
             this.grpHotDot.Location = new System.Drawing.Point(6, 350);
             this.grpHotDot.Name = "grpHotDot";
-            this.grpHotDot.Size = new System.Drawing.Size(188, 68);
+            this.grpHotDot.Size = new System.Drawing.Size(194, 135);
             this.grpHotDot.TabIndex = 53;
             this.grpHotDot.TabStop = false;
             this.grpHotDot.Text = "Heal/Damage Over Time";
+            // 
+            // lblTickAnimation
+            // 
+            this.lblTickAnimation.AutoSize = true;
+            this.lblTickAnimation.Location = new System.Drawing.Point(6, 89);
+            this.lblTickAnimation.Name = "lblTickAnimation";
+            this.lblTickAnimation.Size = new System.Drawing.Size(80, 13);
+            this.lblTickAnimation.TabIndex = 56;
+            this.lblTickAnimation.Text = "Tick Animation:";
+            // 
+            // cmbTickAnimation
+            // 
+            this.cmbTickAnimation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.cmbTickAnimation.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.cmbTickAnimation.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.cmbTickAnimation.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.cmbTickAnimation.DrawDropdownHoverOutline = false;
+            this.cmbTickAnimation.DrawFocusRectangle = false;
+            this.cmbTickAnimation.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbTickAnimation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTickAnimation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbTickAnimation.ForeColor = System.Drawing.Color.Gainsboro;
+            this.cmbTickAnimation.FormattingEnabled = true;
+            this.cmbTickAnimation.Location = new System.Drawing.Point(86, 86);
+            this.cmbTickAnimation.Name = "cmbTickAnimation";
+            this.cmbTickAnimation.Size = new System.Drawing.Size(96, 21);
+            this.cmbTickAnimation.TabIndex = 54;
+            this.cmbTickAnimation.Text = null;
+            this.cmbTickAnimation.TextPadding = new System.Windows.Forms.Padding(2);
+            this.cmbTickAnimation.SelectedIndexChanged += new System.EventHandler(this.cmbTickAnimation_SelectedIndexChanged);
             // 
             // nudTick
             // 
@@ -2286,26 +2340,6 @@ namespace Intersect.Editor.Forms.Editors
             this.lstGameObjects.Size = new System.Drawing.Size(191, 422);
             this.lstGameObjects.TabIndex = 32;
             // 
-            // lblCannotCast
-            // 
-            this.lblCannotCast.AutoSize = true;
-            this.lblCannotCast.Location = new System.Drawing.Point(8, 51);
-            this.lblCannotCast.Name = "lblCannotCast";
-            this.lblCannotCast.Size = new System.Drawing.Size(114, 13);
-            this.lblCannotCast.TabIndex = 56;
-            this.lblCannotCast.Text = "Cannot Cast Message:";
-            // 
-            // txtCannotCast
-            // 
-            this.txtCannotCast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.txtCannotCast.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCannotCast.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.txtCannotCast.Location = new System.Drawing.Point(11, 67);
-            this.txtCannotCast.Name = "txtCannotCast";
-            this.txtCannotCast.Size = new System.Drawing.Size(207, 20);
-            this.txtCannotCast.TabIndex = 55;
-            this.txtCannotCast.TextChanged += new System.EventHandler(this.txtCannotCast_TextChanged);
-            // 
             // FrmSpell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2534,5 +2568,7 @@ namespace Intersect.Editor.Forms.Editors
         private Controls.GameObjectList lstGameObjects;
         private System.Windows.Forms.Label lblCannotCast;
         private DarkTextBox txtCannotCast;
+        private System.Windows.Forms.Label lblTickAnimation;
+        private DarkComboBox cmbTickAnimation;
     }
 }
